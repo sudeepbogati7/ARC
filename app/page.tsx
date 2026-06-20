@@ -1,65 +1,73 @@
-import Image from "next/image";
+import React from 'react';
+import Navbar from '@/components/Navbar';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-white text-black font-sans">
+      <Navbar />
+
+      {/* hero Section with Split layout */}
+      <section className="min-h-screen flex items-center px-10 md:px-20 pt-32 pb-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* left Content */}
+          <div className="space-y-6">
+            <span className="uppercase tracking-widest text-xs font-bold text-gray-400">ARC TECH LAB</span>
+            
+          {/* headline */}
+            <h1 className="text-6xl md:text-7xl font-black tracking-tighter leading-tight">
+              We <span className="text-black">connect</span> <span className="text-[#0E9A5E]"> People Systems and Solutions</span>
+            </h1>
+
+          {/* sub-headline */}
+            <p className="text-2xl font-bold text-black leading-relaxed">
+              Architectually, arcs are <span className="text-[#0E9A5E]">strong, load-bearing</span> <span className="text-red-600">like us.</span>
+            </p>
+
+            <div className="flex gap-4 pt-4">
+              <button className="bg-black text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-800 transition">Explore Our Work →</button>
+              <button className="border border-black px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition">Our Services</button>
+            </div>
+            
+            {/* stats row */}
+            <div className="flex gap-10 pt-8 border-t border-gray-100 mt-8">
+              {[ { n: '120+', l: 'Projects' }, { n: '80+', l: 'Clients' }, { n: '12+', l: 'Awards' } ].map(s => (
+                <div key={s.l}>
+                  <div className="text-2xl font-black text-[#0E9A5E]">{s.n}</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-widest">{s.l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* right: Visual Element */}
+              <div className="hidden md:block w-full h-full">
+             <img 
+                  src="/home.jpg" 
+                  alt="Digital Experience Agency" 
+              className="w-[300%] h-auto object-contain transition-transform duration-500 hover:scale-105" 
+             />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* services Section */}
+      <section className="py-24 px-10 bg-gray-50">
+        <h2 className="text-5xl font-bold text-center mb-16 tracking-tight">Our Expertise</h2>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            { title: 'Web Development', icon: '🌐', desc: 'Crafting responsive, high-performance web applications.' },
+            { title: 'Mobile Apps', icon: '📱', desc: 'Building intuitive mobile experiences for everyone.' },
+            { title: 'Full Stack', icon: '💻', desc: 'Powering ecosystems with robust MERN integration.' }
+          ].map((s) => (
+            <div key={s.title} className="p-10 bg-white border border-gray-100 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-all duration-300">
+              <div className="text-5xl mb-6">{s.icon}</div>
+              <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
+              <p className="text-gray-500 leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
