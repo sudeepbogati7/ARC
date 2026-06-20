@@ -51,23 +51,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* services Section */}
-      <section className="py-24 px-10 bg-gray-50">
-        <h2 className="text-5xl font-bold text-center mb-16 tracking-tight">Our Expertise</h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            { title: 'Web Development', icon: '🌐', desc: 'Crafting responsive, high-performance web applications.' },
-            { title: 'Mobile Apps', icon: '📱', desc: 'Building intuitive mobile experiences for everyone.' },
-            { title: 'Full Stack', icon: '💻', desc: 'Powering ecosystems with robust MERN integration.' }
-          ].map((s) => (
-            <div key={s.title} className="p-10 bg-white border border-gray-100 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-all duration-300">
-              <div className="text-5xl mb-6">{s.icon}</div>
-              <h3 className="text-2xl font-bold mb-3">{s.title}</h3>
-              <p className="text-gray-500 leading-relaxed">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </main>
   );
 }
