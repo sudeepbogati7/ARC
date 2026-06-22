@@ -1,0 +1,25 @@
+.manifesto {
+  padding: 9rem 0;
+  position: relative;
+  z-index: 10;
+  background: var(--bg-primary);
+}
+
+.eyebrow {
+  margin-bottom: 2.5rem;
+}
+
+.statement {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(1.75rem, 4vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  max-width: 1000px;
+  color: var(--text-primary);
+}
+
+.word {
+  display: inline-block;
+  transition: opacity 0.2s linear;
+}

@@ -1,0 +1,170 @@
+.hero {
+  position: relative;
+  /* enough room for copy + the stacked dashboard, no negative margins */
+  padding: calc(var(--nav-height) + 4rem) 0 7rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* technical grid, masked */
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 60px 60px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 55% at 50% 16%, #000 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 55% at 50% 16%, #000 25%, transparent 78%);
+}
+
+/* light-bleed behind headline + above dashboard */
+.bleed {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  height: 65%;
+  z-index: 0;
+  background:
+    radial-gradient(55% 45% at 50% 35%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%),
+    radial-gradient(45% 40% at 40% 60%, color-mix(in srgb, var(--accent-ice) 13%, transparent), transparent 70%);
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 860px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono-face);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.75rem;
+}
+.kickerDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.title {
+  font-family: var(--font-display-face);
+  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  margin-bottom: 1.5rem;
+  max-width: 17ch;
+}
+/* the expressive serif emphasis word */
+.accentLine {
+  font-family: var(--font-accent-face);
+  font-weight: 400;
+  font-style: italic;
+  background: linear-gradient(100deg, var(--accent-ice-bright), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: 0.05em;
+}
+.shiny { display: inline-block; }
+
+.description {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2.25rem;
+}
+
+.trust {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.trustLabel {
+  font-family: var(--font-mono-face);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+.trustList {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.trustItem {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+/* tilted dashboard, stacked below — kept inside hero bounds (no overlap).
+   Extra horizontal padding gives the floating cards room before overflow clip. */
+.stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  padding: 0 2.5rem;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+.stageInner {
+  transform-origin: center bottom;
+  transform: rotateX(13deg);
+  position: relative;
+}
+/* glow under the dashboard */
+.stageInner::after {
+  content: "";
+  position: absolute;
+  inset: -6% -4% -14% -4%;
+  z-index: -1;
+  background: radial-gradient(50% 60% at 50% 30%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 70%);
+  filter: blur(45px);
+}
+
+@media (max-width: 768px) {
+  .hero { padding: calc(var(--nav-height) + 2.5rem) 0 5rem; }
+  .actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 320px; }
+  .actions :global(.btn-primary),
+  .actions :global(.btn-outline) { width: 100%; }
+  .stage { margin-top: 2.5rem; perspective: 1100px; }
+  .stageInner { transform: rotateX(9deg); }
+}

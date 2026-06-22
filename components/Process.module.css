@@ -1,0 +1,119 @@
+.process {
+  padding: 8rem 0;
+  position: relative;
+  z-index: 10;
+  background: var(--bg-secondary);
+}
+
+.header {
+  max-width: 720px;
+  margin: 0 auto 4.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+}
+
+/* The ascent track */
+.track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* connecting line behind the steps */
+.line {
+  position: absolute;
+  top: 26px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-ice) 20%,
+    var(--accent) 80%,
+    transparent
+  );
+  opacity: 0.4;
+}
+
+.step {
+  position: relative;
+  padding: 0 0.5rem;
+}
+
+.stepHead {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stepNum {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.stepIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  color: var(--accent-ice-bright);
+  transition: transform 0.4s var(--ease-arc), border-color 0.4s var(--ease-arc),
+    color 0.4s var(--ease-arc);
+}
+
+.step:hover .stepIcon {
+  transform: translateY(-4px);
+  border-color: var(--accent-ice);
+  color: var(--accent);
+}
+
+.stepTitle {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.stepDesc {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 900px) {
+  .track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .line {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .track {
+    grid-template-columns: 1fr;
+  }
+}
