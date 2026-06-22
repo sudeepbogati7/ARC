@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import TextBreak from "@/components/TextBreak";
 import ServicesStory from "@/components/ServicesStory";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Marquee />
       <About />
       <TextBreak
         lines={["Most software adds complexity.", "<em>We remove it.</em>"]}

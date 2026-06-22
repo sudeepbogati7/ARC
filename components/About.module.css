@@ -117,9 +117,10 @@
   font-family: var(--font-display-face);
 }
 .meaning {
-  font-size: 0.9rem;
+  font-family: var(--font-accent-face);
+  font-size: 1.15rem;
   font-style: italic;
-  color: var(--text-muted);
+  color: var(--accent-ice-bright);
   margin-bottom: 0.5rem;
 }
 .cardDesc {
