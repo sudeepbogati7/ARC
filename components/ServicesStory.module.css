@@ -1,0 +1,184 @@
+.section {
+  padding: 8rem 0;
+  position: relative;
+  z-index: 10;
+  background: var(--bg-secondary);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+  max-width: 640px;
+}
+.title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* steps */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12vh;
+  padding: 6vh 0;
+}
+.step {
+  opacity: 0.35;
+  transition: opacity 0.4s var(--ease-arc);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.stepIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.stepNum {
+  font-family: var(--font-mono-face);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.stepTitle {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+.stepDesc {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  max-width: 440px;
+}
+.stepLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  transition: gap 0.3s var(--ease-arc);
+}
+.stepLink:hover { gap: 0.8rem; }
+
+/* pinned visual */
+.visualCol {
+  position: relative;
+  height: 100%;
+}
+.sticky {
+  position: sticky;
+  top: calc(var(--nav-height) + 8vh);
+  height: 60vh;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--accent-ice) 8%, transparent), transparent 60%),
+    var(--bg-elevated);
+  overflow: hidden;
+}
+
+/* illustration backdrop that fills the card */
+.visualImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center 30%;
+  opacity: 0.5;
+  padding: 2rem 2rem 0;
+  pointer-events: none;
+}
+/* scrim so the foreground label/stack stay readable over the illustration */
+.visualScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    color-mix(in srgb, var(--bg-elevated) 88%, transparent) 78%,
+    var(--bg-elevated) 100%
+  );
+  pointer-events: none;
+}
+
+.visual {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.visualInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem 2rem 2.5rem;
+}
+.visualIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
+  border: 1px solid var(--line-strong);
+  backdrop-filter: blur(6px);
+}
+.visualIcon {
+  color: var(--accent);
+}
+.visualLabel {
+  font-family: var(--font-display-face);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.visualStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  max-width: 360px;
+}
+.chip {
+  font-family: var(--font-mono-face);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .visualCol { display: none; }
+  .steps {
+    gap: 4rem;
+    padding: 0;
+  }
+  .step { opacity: 1; }
+}

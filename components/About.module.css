@@ -1,0 +1,150 @@
+.about {
+  padding: 10rem 0 8rem;
+  position: relative;
+  z-index: 10;
+  background: var(--bg-secondary);
+}
+
+.header {
+  max-width: 760px;
+  margin: 0 auto 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+.title {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+}
+.subtitle {
+  font-size: 1.18rem;
+  color: var(--text-secondary);
+  max-width: 620px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+
+/* ── Card with rotating conic border-shine ── */
+.card {
+  position: relative;
+  border-radius: 20px;
+  padding: 1px; /* the border thickness */
+  background: var(--line); /* fallback border colour */
+  overflow: hidden;
+  transition: transform 0.45s var(--ease-arc);
+}
+/* the rotating shine — a conic gradient spun by @property angle */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(
+    from var(--shine-angle, 0deg),
+    transparent 0deg,
+    var(--shine-color, var(--accent)) 40deg,
+    transparent 120deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-arc);
+  animation: spin 5s linear infinite;
+  z-index: 0;
+}
+.card:hover::before {
+  opacity: 0.9;
+}
+@keyframes spin {
+  to { --shine-angle: 360deg; }
+}
+
+/* the inner surface that sits above the shine */
+.cardInner {
+  position: relative;
+  z-index: 1;
+  border-radius: 19px;
+  padding: 2.5rem 2rem;
+  min-height: 340px;
+  height: 100%;
+  background:
+    radial-gradient(120% 70% at 50% 0%, var(--card-glow), transparent 55%),
+    var(--bg-elevated);
+  overflow: hidden;
+}
+
+/* layered mountain silhouettes anchored to the bottom of each card */
+.mountains {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 52%;
+  pointer-events: none;
+  transition: transform 0.6s var(--ease-arc), opacity 0.6s var(--ease-arc);
+}
+.card:hover .mountains {
+  transform: translateY(-6px) scale(1.04);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.bigLetter {
+  font-family: var(--font-display-face);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-family: var(--font-display-face);
+}
+.meaning {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.cardDesc {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  flex-grow: 1;
+}
+.tag {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 1.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-elevated) 70%, transparent);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--line-strong);
+  color: var(--text-primary);
+  font-family: var(--font-mono-face);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+}
+
+/* graceful fallback if @property unsupported: just show a static glow border */
+@supports not (background: conic-gradient(from 0deg, red, blue)) {
+  .card:hover::before { opacity: 0; }
+  .card:hover { border-color: var(--line-strong); }
+}
